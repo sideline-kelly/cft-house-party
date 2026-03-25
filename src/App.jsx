@@ -13,10 +13,100 @@ const HEAT_COLORS = {
 const DIVISIONS = ["RX", "Scaled", "Masters", "Teens", "Open"];
 
 const WODS_CONFIG = [
-  { id: "wod1", name: "WOD 1", cap: "16 Min CAP", heats: [{ heat: "HEAT 1", time: "9:00" }, { heat: "HEAT 2", time: "9:18" }, { heat: "HEAT 3", time: "9:36" }, { heat: "HEAT 4", time: "9:54" }] },
-  { id: "wod2", name: "WOD 2", cap: "10 Min CAP", heats: [{ heat: "HEAT 1", time: "10:15" }, { heat: "HEAT 2", time: "10:25" }, { heat: "HEAT 3", time: "10:35" }, { heat: "HEAT 4", time: "10:45" }] },
-  { id: "wod3", name: "WOD 3", cap: "15 Min CAP", heats: [{ heat: "HEAT 1", time: "11:00" }, { heat: "HEAT 2", time: "11:15" }, { heat: "HEAT 3", time: "11:30" }, { heat: "HEAT 4", time: "11:45" }] },
-  { id: "wod4", name: "WOD 4", cap: "10 Min CAP", heats: [{ heat: "HEAT 1", time: "12:05" }, { heat: "HEAT 2", time: "12:15" }, { heat: "HEAT 3", time: "12:25" }, { heat: "HEAT 4", time: "12:35" }] },
+  {
+    id: "wod1",
+    name: "Run This Town",
+    cap: "3:00 ON / 1:00 OFF x 4",
+    description: [
+      "10/8 Cal Bike Each",
+      "15 Sandbag Squats (split however)",
+      "Max Synchro Shuttle Run (25' = 1 rep)"
+    ],
+    notes: [
+      "RX: 150/100",
+      "INT: 100 (4 bags)",
+      "SC: 4 bags / 3 bags"
+    ],
+    heats: [
+      { heat: "HEAT 1", time: "9:00" },
+      { heat: "HEAT 2", time: "9:18" },
+      { heat: "HEAT 3", time: "9:36" },
+      { heat: "HEAT 4", time: "9:54" }
+    ]
+  },
+
+  {
+    id: "wod2",
+    name: "Get Low",
+    cap: "10 MIN AMRAP",
+    description: [
+      "3 Gymnastic Reps",
+      "6 Deadlifts",
+      "9 Burpee Over Bar"
+    ],
+    notes: [
+      "RX: BMU (225/155)",
+      "INT: C2B (185/125)",
+      "SC: Jumping Pull-Up (135/95)"
+    ],
+    heats: [
+      { heat: "HEAT 1", time: "10:15" },
+      { heat: "HEAT 2", time: "10:25" },
+      { heat: "HEAT 3", time: "10:35" },
+      { heat: "HEAT 4", time: "10:45" }
+    ]
+  },
+
+  {
+    id: "wod3",
+    name: "Misery Business",
+    cap: "15 MIN CAP",
+    description: [
+      "4 Rounds",
+      "30 T2B",
+      "20 Snatch"
+    ],
+    notes: [
+      "RX: T2B (155/105)",
+      "INT: Hanging Medball Raise (20/14), (115/85)",
+      "SC: Slamball Sit-Up (15/10), (85/55)"
+    ],
+    heats: [
+      { heat: "HEAT 1", time: "11:00" },
+      { heat: "HEAT 2", time: "11:15" },
+      { heat: "HEAT 3", time: "11:30" },
+      { heat: "HEAT 4", time: "11:45" }
+    ]
+  },
+
+  {
+    id: "wod4",
+    name: "Waterfalls",
+    cap: "10 MIN CAP",
+    description: [
+      "Buy-In:",
+      "30 Synchro DB Hang Clean & Jerk",
+      "",
+      "Waterfall:",
+      "100ft Bear Crawl",
+      "250m Row",
+      "100ft Bear Crawl",
+      "",
+      "Cash-Out:",
+      "30 Synchro Goblet Squat"
+    ],
+    notes: [
+      "RX: (50/35)",
+      "INT: (35/20)",
+      "SC: (20/15)"
+    ],
+    heats: [
+      { heat: "HEAT 1", time: "12:05" },
+      { heat: "HEAT 2", time: "12:15" },
+      { heat: "HEAT 3", time: "12:25" },
+      { heat: "HEAT 4", time: "12:35" }
+    ]
+  }
 ];
 
 // Initial team roster — id is stable key, never changes
