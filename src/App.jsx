@@ -80,14 +80,16 @@ export default function CFTCompApp() {
 
   // 🔥 LOAD FROM SUPABASE
   useEffect(() => {
-    async function init() {
-      const t = await loadTeams();
-      const s = await loadScores();
-      setTeams(t);
-      setScores(s);
-    }
-    init();
-  }, []);
+  async function init() {
+    const t = await loadTeams();
+    const s = await loadScores();
+
+    setTeams(t);
+    setScores(s);
+  }
+
+  init();
+}, []);
 
   // ─── Update Team ─────────────────────────────
 
@@ -98,13 +100,14 @@ export default function CFTCompApp() {
     setSyncStatus("unsaved");
   }, []);
 
-  function handleScore(teamId, wod, val) {
-    setScores(prev => ({
-      ...prev,
-      [teamId]: { ...prev[teamId], [wod]: val },
-    }));
-    setSyncStatus("unsaved");
-  }
+  async function handleSync() {
+  setSyncStatus("syncing");
+
+  await saveTeams(teams);
+  await saveScores(scores);
+
+  setSyncStatus("synced");
+}
 
   // 🔥 REAL SAVE
   async function handleSync() {
