@@ -81,15 +81,17 @@ export default function CFTCompApp() {
   // 🔥 LOAD FROM SUPABASE
   useEffect(() => {
   async function init() {
-    const t = await loadTeams();
-    const s = await loadScores();
+    const t = await loadTeams()
+    const s = await loadScores()
 
-    setTeams(t);
-    setScores(s);
+    console.log("TEAMS:", t)
+
+    setTeams(t)
+    setScores(s)
   }
 
-  init();
-}, []);
+  init()
+}, [])
 
   // ─── Update Team ─────────────────────────────
 
