@@ -5,7 +5,16 @@ import { supabase } from "./supabase"
 export async function loadTeams() {
   const { data, error } = await supabase.from("teams").select("*")
   if (error) throw error
-  return data
+
+  return data.map(t => ({
+    id: t.id,
+    teamName: t.team_name,
+    athlete1: t.athlete1,
+    athlete2: t.athlete2,
+    division: t.division,
+    heat: t.heat,
+    lane: t.lane
+  }))
 }
 
 export async function loadScores() {
