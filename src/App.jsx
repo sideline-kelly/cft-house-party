@@ -661,7 +661,13 @@ export default function CFTCompApp() {
                         <td style={{ padding:"0.65rem 0.75rem" }}>
                           <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
                             <span style={T.teamBold}>{row.teamName}</span>
-                            <DivisionBadge division={row.division}  show={settings.showDivisions === "true"} />sion={team.division} show={settings.showDivisions === "true"} />
+                            <td style={{ padding:"0.65rem 0.75rem" }}>
+  <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
+    <span style={T.teamBold}>{row.teamName}</span>
+    <DivisionBadge division={row.division} show={settings.showDivisions === "true"} />
+  </div>
+  <div style={{ ...T.small, marginTop:2 }}>{athletes.join(" · ")}</div>
+</td>
                           </div>
                           <div style={{ ...T.small, marginTop:2 }}>{athletes.join(" · ")}</div>
                         </td>
@@ -899,7 +905,7 @@ export default function CFTCompApp() {
                                 <div style={T.small}>{athletes.join(" · ")}</div>
                               </td>
                               <td style={{ padding:"0.6rem 0.75rem" }}><HeatBadge heat={team.heat} /></td>
-                              <td style={{ padding:"0.6rem 0.75rem" }}><DivisionBadge division={team.division} show={settings.showDivisions === "true"} /></td>
+                              <td style={{ padding:"0.6rem 0.75rem" }}><DivisionBadge division={team.division} show={true} /></td>
                               {wods.map(w => (
                                 <td key={w.id} style={{ padding:"0.5rem 0.6rem", textAlign:"center" }}>
                                   <input type="number" value={scores[team.id]?.[w.id]||""}
