@@ -263,8 +263,18 @@ useEffect(() => {
       {/* ── NAV ── */}
       <nav style={{ background: "#111", borderBottom: "2px solid #c0392b", padding: "0 1.5rem", display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", padding: "0.75rem 0", flex: 1 }}>
-          <div style={{ width: 50, height: 50, borderRadius: 6, border: "1.5px dashed #444", display: "flex", alignItems: "center", justifyContent: "center", ...T.small, textAlign: "center", lineHeight: 1.3, cursor: "pointer", flexShrink: 0 }}>EVENT<br/>LOGO</div>
-          <div style={{ width: 50, height: 50, borderRadius: 6, border: "1.5px dashed #444", display: "flex", alignItems: "center", justifyContent: "center", ...T.small, textAlign: "center", lineHeight: 1.3, cursor: "pointer", flexShrink: 0 }}>GYM<br/>LOGO</div>
+          <div style={{ display: "flex", gap: 12 }}>
+  <img
+    src="/event-logo.png"
+    alt="Event Logo"
+    style={{ width: 100, height: "auto", objectFit: "contain" }}
+  />
+  <img
+    src="/gym-logo.png"
+    alt="Gym Logo"
+    style={{ width: 100, height: "auto", objectFit: "contain" }}
+  />
+</div>
           <div>
             <div style={T.navTitle}>In-House Competition</div>
             <div style={T.navSub}>CrossFit Taylors · Taylors, SC</div>
