@@ -483,7 +483,13 @@ export default function CFTCompApp() {
   const allHeatKeys = [...new Set(wods.flatMap(w => (w.heats||[]).map(h => h.heat)))].sort();
 
   const syncColor = { synced:"#22c55e", syncing:"#f97316", unsaved:"#eab308", error:"#c0392b" }[syncStatus] || "#555";
-  const syncLabel = { synced:"✓ Saved", syncing:"Saving…", unsaved:"● Unsaved", error:"✕ Error", idle:"No changes" }[syncStatus];
+  const syncLabel = { 
+  synced:  "✓ Saved", 
+  syncing: "Saving…", 
+  unsaved: "● Unsaved", 
+  error:   "✕ Error", 
+  idle:    "No changes" 
+}[syncStatus];
 
   if (loading) {
     return (
