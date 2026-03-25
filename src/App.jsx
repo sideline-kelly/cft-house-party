@@ -79,7 +79,9 @@ const ADMIN_PASSWORD = "cft2025";
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function athleteList(team) {
-  return ["athlete1","athlete2","athlete3","athlete4"].map(k => team[k]).filter(Boolean);
+  return ["athlete1","athlete2","athlete3","athlete4"]
+    .map(k => team[k] || "")
+    .filter(s => s.trim() !== "");
 }
 
 function initScores(teams, wods) {
@@ -140,7 +142,7 @@ function HeatBadge({ heat }) {
 }
 
 function DivisionBadge({ division }) {
-  if (!division) return null;
+  if (!division || division === "— None —" || division.trim() === "") return null;
   const colors = { RX:"#3b82f6", Intermediate:"#06b6d4", Scaled:"#8b5cf6", Masters:"#f59e0b", Mixed:"#ec4899", "":"#555" };
   const color = colors[division] || "#6b7280";
   return (
