@@ -402,7 +402,31 @@ useEffect(() => {
                   <span style={{ ...T.h2, fontSize: 21 }}>{wod.name}</span>
                   <span style={{ ...T.badge, color: "#c0392b", fontSize: 12 }}>{wod.cap}</span>
                 </div>
-                {heatTeamsForWod(wod).map((h, hi, arr) => (
+
+{/* WOD DESCRIPTION BLOCK */}
+<div style={{
+  padding: "0.75rem 1.25rem",
+  borderBottom: "1px solid #1c1c1c",
+  background: "#141414"
+}}>
+  <div style={{ fontSize: 13, marginBottom: 6 }}>
+    {wod.cap}
+  </div>
+
+  {wod.description?.map((line, i) => (
+    <div key={i} style={{ fontSize: 13 }}>
+      {line}
+    </div>
+  ))}
+
+  {wod.notes?.map((note, i) => (
+    <div key={i} style={{ fontSize: 12, opacity: 0.6 }}>
+      {note}
+    </div>
+  ))}
+</div>
+
+{heatTeamsForWod(wod).map((h, hi, arr) => (
                   <div key={h.heat} style={{ borderBottom: hi < arr.length - 1 ? "1px solid #1c1c1c" : "none" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.6rem 1.25rem", background: "#181818" }}>
                       <HeatBadge heat={h.heat} />
