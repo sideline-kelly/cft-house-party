@@ -13,7 +13,7 @@ export async function loadTeams() {
     athlete3:  t.athlete3  || "",
     athlete4:  t.athlete4  || "",
     division:  t.division  || "",
-    heat:      t.heat,
+    heat:      t.heat,     || "",
     lane:      t.lane      || "",
   }));
 }
