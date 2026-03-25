@@ -25,6 +25,7 @@ const DEFAULT_SETTINGS = {
   podiumNote: "After all WODs: PODIUM ASAP — stay tuned for leaderboard updates.",
   eventLogoUrl: "/event-logo.svg",
   gymLogoUrl: "/gym-logo.svg",
+  showDivisions: "true",   // ← add this
 };
 
 const DEFAULT_WODS = [
@@ -141,7 +142,8 @@ function HeatBadge({ heat }) {
   return <span style={{ ...T.badge, background:HEAT_COLORS[heat]?.bg||"#444", color:HEAT_COLORS[heat]?.text||"#fff", padding:"3px 10px", borderRadius:3, flexShrink:0 }}>{heat}</span>;
 }
 
-function DivisionBadge({ division }) {
+function DivisionBadge({ division, show }) {
+  if (!show) return null;
   if (!division || division === "— None —" || division.trim() === "") return null;
   const colors = { RX:"#3b82f6", Intermediate:"#06b6d4", Scaled:"#8b5cf6", Masters:"#f59e0b", Mixed:"#ec4899", "":"#555" };
   const color = colors[division] || "#6b7280";
@@ -322,7 +324,7 @@ function TeamProfileCard({ team, onUpdate, onRemove }) {
           <div style={{ ...T.small, color:"#555", marginTop:2 }}>{athletes.join(" · ") || "No athletes"}</div>
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", flexShrink:0 }}>
-          <DivisionBadge division={team.division} />
+          <DivisionBadge division={team.division} show={settings.showDivisions === "true"} />
           <HeatBadge heat={team.heat} />
           <span style={{ fontFamily:inter, color:"#555", fontSize:14, transform:expanded?"rotate(180deg)":"none", transition:"transform 0.2s", display:"inline-block", marginLeft:4 }}>▾</span>
         </div>
@@ -578,7 +580,7 @@ export default function CFTCompApp() {
                       {h.teams.map(team => (
                         <span key={team.id} style={{ display:"inline-flex", alignItems:"center", gap:"0.35rem", ...T.teamMuted, background:"#1e1e1e", border:"1px solid #282828", borderRadius:4, padding:"3px 10px" }}>
                           {team.teamName}
-                          <DivisionBadge division={team.division} />
+                          <DivisionBadge division={team.division} show={settings.showDivisions === "true"} />
                         </span>
                       ))}
                     </div>
@@ -610,7 +612,7 @@ export default function CFTCompApp() {
                           <div key={t.id} style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
                             <span style={{ ...T.small, color:"#555", minWidth:14 }}>{t.lane}</span>
                             <span style={T.teamMuted}>{t.teamName}</span>
-                            <DivisionBadge division={t.division} />
+                            <DivisionBadge division={t.division}    show={settings.showDivisions === "true"} />
                           </div>
                         ))}
                       </div>
@@ -659,7 +661,7 @@ export default function CFTCompApp() {
                         <td style={{ padding:"0.65rem 0.75rem" }}>
                           <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
                             <span style={T.teamBold}>{row.teamName}</span>
-                            <DivisionBadge division={row.division} />
+                            <DivisionBadge division={row.division}  show={settings.showDivisions === "true"} />sion={team.division} show={settings.showDivisions === "true"} />
                           </div>
                           <div style={{ ...T.small, marginTop:2 }}>{athletes.join(" · ")}</div>
                         </td>
@@ -750,6 +752,25 @@ export default function CFTCompApp() {
                     <Field label="Venue / Subtitle Line" value={settings.venueLine} onChange={v=>updateSettings({venueLine:v})} placeholder="CrossFit Taylors · Taylors, SC" />
                     <Field label="Check-In Info (shown below schedule heading)" value={settings.checkinInfo} onChange={v=>updateSettings({checkinInfo:v})} placeholder="Check-in 8:00–8:20am · Athlete Brief 8:30am" />
                     <Field label="Podium Note" value={settings.podiumNote} onChange={v=>updateSettings({podiumNote:v})} placeholder="After all WODs: PODIUM ASAP — stay tuned for leaderboard updates." />
+                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", background:"#0d0d0d", border:"1px solid #2e2e2e", borderRadius:5, padding:"0.55rem 0.75rem" }}>
+  <div>
+    <div style={{ ...T.label, marginBottom:2 }}>Show Division Badges</div>
+    <div style={T.small}>Display RX / Scaled / Masters badges on schedule, leaderboard, and team lists</div>
+  </div>
+  <button
+    onClick={() => updateSettings({ showDivisions: settings.showDivisions === "true" ? "false" : "true" })}
+    style={{
+      width: 44, height: 24, borderRadius: 12, border: "none", cursor: "pointer", flexShrink: 0,
+      background: settings.showDivisions === "true" ? "#22c55e" : "#333",
+      position: "relative", transition: "background 0.2s"
+    }}
+  >
+    <span style={{
+      position: "absolute", top: 3, width: 18, height: 18, borderRadius: "50%", background: "#fff",
+      transition: "left 0.2s", left: settings.showDivisions === "true" ? 23 : 3
+    }} />
+  </button>
+</div>
                   </div>
                 </SectionCard>
               </div>
@@ -878,7 +899,7 @@ export default function CFTCompApp() {
                                 <div style={T.small}>{athletes.join(" · ")}</div>
                               </td>
                               <td style={{ padding:"0.6rem 0.75rem" }}><HeatBadge heat={team.heat} /></td>
-                              <td style={{ padding:"0.6rem 0.75rem" }}><DivisionBadge division={team.division} /></td>
+                              <td style={{ padding:"0.6rem 0.75rem" }}><DivisionBadge division={team.division} show={settings.showDivisions === "true"} /></td>
                               {wods.map(w => (
                                 <td key={w.id} style={{ padding:"0.5rem 0.6rem", textAlign:"center" }}>
                                   <input type="number" value={scores[team.id]?.[w.id]||""}
